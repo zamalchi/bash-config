@@ -6,8 +6,7 @@
 
 
 
-### bash config ###
-alias sba=". ${HOME}/.bash_config";
+
 # alias viba='vim /home/zamalchi/.bash_config';
 # alias eba='emacs -nw /home/zamalchi/.bash_config';
 
