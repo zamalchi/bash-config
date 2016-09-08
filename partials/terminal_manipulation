@@ -44,7 +44,10 @@ else
 	echo "Recommended install: colordiff";
 fi
 
-alias sbb='"$BASH" -c "sudo $(history -p !!)"';
+alias sbb='"$BASH" -cl "sudo $(history -p !!)"';
+
+function abb-func() { $BASH -cl "${1} $(history -p !!:*)"; }
+alias abb='abb-func';
 
 ### pwd ###
 function pwd-color-func() {
