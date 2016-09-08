@@ -19,3 +19,8 @@ alias sba=". ${HOME}/.bash_config";
 for f in ${HOME}/bash-config/partials/*; do
   . "$f";
 done
+
+
+PATH=$PATH:$HOME/bin
+
+export PATH
