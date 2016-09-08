@@ -35,5 +35,7 @@ alias du='du -ch'
 # top is atop, just like vi is vim
 rpm -q atop > /dev/null;
 if [ $? -eq 0 ]; then
-	alias top='atop'
+	alias top='atop';
+else
+	echo "Recommended install: atop";
 fi

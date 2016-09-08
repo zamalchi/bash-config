@@ -40,6 +40,8 @@ alias mkdir='mkdir -pv';
 rpm -q colordiff > /dev/null;
 if [ $? -eq 0 ]; then
 	alias diff='colordiff';
+else
+	echo "Recommended install: colordiff";
 fi
 
 alias sbb='"$BASH" -c "sudo $(history -p !!)"';
