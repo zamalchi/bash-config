@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# copy append
+function cpa-func() { cp ${1}{,${2}}; }
+alias cpa='cpn-func';
+# copy remove ${1} should *not* contain ${2} when running the command
+function cpr-func() { cp ${1}{${2},}; }
+alias cpr='cpr-func';
+# copy switch ${1} should *not* contain ${2} when running the command
+function cps-func() { cp ${1}{${2},${3}}; }
+alias cps='cps-func';
+
+# move/rename append
+function mva-func() { mv ${1}{,${2}}; }
+alias mva='mva-func';
+# move/rename remove
+function mvr-func() { mv ${1}{${2},}; }
+alias mvr='mvr-func';
+# move/rename switch ${1} should *not* contain ${2} when running the command
+function mvs-func() { mv ${1}{${2},${3}}; }
+alias mvs='mvs-func';
+
+# do not delete / or prompt if deleting more than 3 files at a time #
+alias rm='rm -I --preserve-root'
+ 
+# confirmation #
+alias mv='mv -i'
+alias cp='cp -i'
+alias ln='ln -i'
+ 
+# Parenting changing perms on / #
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+
+
+
+### editors ###
+alias emacs='/usr/bin/emacs -nw';
+alias vi='/usr/bin/vim';

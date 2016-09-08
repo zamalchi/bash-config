@@ -1,0 +1,54 @@
+#!/bin/bash
+
+alias cdd='cd ~/Desktop';
+alias cddow='cd ~/Downloads';
+alias ..='cd ..';
+alias ...='cd ../..';
+alias .4='cd ../../..';
+alias .5='cd ../../../..';
+alias .b='cd -';
+
+### ls ###
+alias l.='ls -d .*';
+alias la='ls -lA';
+alias l1='ls -1';
+alias ll='ls -alF'
+alias l='ls -CF'
+
+alias pwla='echo;pwd;la;echo';
+
+#grep
+function grh-func() { ls -CF1 ./${1} | grep html; }
+alias grh="grh-func"
+function grc-func() { ls -CF1 ./${1} | grep css; }
+alias grc="grc-func"
+
+alias lag='ls -la | grep';
+
+# pushd/popd
+function p-func() { pushd ${1} > /dev/null; echo -e "${GREEN}`dirs -v`${NORMAL}"; }
+alias p="p-func"
+function o-func() { popd ${1} > /dev/null; echo -e "${GREEN}`dirs -v`${NORMAL}"; }
+alias o="o-func"
+alias d="echo -e \"${GREEN}`dirs -v`${NORMAL}\""
+
+
+alias c='clear';
+
+alias mkdir='mkdir -pv';
+
+rpm -q colordiff > /dev/null;
+if [ $? -eq 0 ]; then
+	alias diff='colordiff';
+fi
+
+alias sbb='"$BASH" -c "sudo $(history -p !!)"';
+
+### pwd ###
+function pwd-color-func() {
+  cd ..;
+  echo -ne "${GREEN}`\pwd`/${NORMAL}";
+  cd - > /dev/null;
+  echo -e "${LBLUE}`\pwd | awk -F "/" '{print $NF}'`${NORMAL}";
+}
+alias pwd="pwd-color-func";

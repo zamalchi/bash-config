@@ -1,0 +1,25 @@
+#!/bin/bash
+
+
+### git ###
+alias gitac='git add .; git commit -m';
+alias gits='git status';
+alias g.='git status ./';
+alias gitl='git log';
+alias gita='git add .';
+alias gitc='git commit -m';
+alias gitb='git branch';
+alias gitco='git checkout';
+alias gitcom='git checkout master';
+alias uncommit='git reset --soft HEAD^';
+alias unstage='git reset HEAD';
+alias gitset='git remote set-url origin';
+function giturl-func() {
+	url=`git config --get remote.origin.url`;
+	header=`echo $url | awk -F '/' '{print $1}'`;
+	repo=`echo $url | awk -F '/' '{print $2}'`;
+
+	echo -e "${GREEN}${header}${NORMAL}/${LCYAN}${repo}${NORMAL}";
+}
+alias giturl='giturl-func';
+alias gitinfo='git remote show origin';

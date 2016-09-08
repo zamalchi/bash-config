@@ -1,0 +1,59 @@
+#!/bin/bash
+
+
+
+### PS1 ###
+
+function user-ps1-inline-func() {
+	PS1='[\t][\u@\h: \W]$ ';
+
+}
+function user-ps1-block-func(){
+	PS1='--[\t][\u@\h: \W]\n|_$ ';
+}
+function root-ps1-inline-func(){
+	PS1='[\t][\u@\h: \W]\e[0;31m#\e[0m ';
+}
+function root-ps1-block-func(){
+	PS1='--[\t][\u@\h: \W]\e[0;31m#\e[0m ';
+}
+
+if [ $UID -eq 0 ]; then
+	PS1='[\t][\u@\h: \W]\e[0;31m#\e[0m ';
+else
+	PS1='[\t][\u@\h: \W]$ ';
+fi
+
+
+
+## PS1 ###
+beginning="`echo -ne \"[\u @ ${PS_GREEN}\h${PS_NORMAL}]:\"`";
+return_val=$?;
+cd ..;
+p=\$PWD;
+path="`echo -ne \"${GREEN}\${p}/${NORMAL}\"`";
+cd - > /dev/null;
+p=`echo \$PWD | awk -F "/" '{print $NF}'`;
+path=${path}"`echo -e \"${PS_UCYAN}\${p}${NORMAL}\"`";
+
+path=\$PWD
+endchar="`echo -e \"${PS_GREEN}$ ${PS_NORMAL}\"`";
+if [ $UID -eq 0 ]; then
+	endchar="`echo -e \"${PS_RED}# ${PS_NORMAL}\"`";
+fi
+		
+PS1="${PS_LCYAN}\$?${PS_NORMAL} [${PS_LPURPLE}\t${PS_NORMAL}]${beginning} ${PS_UCYAN}$path${PS_NORMAL}\n[_____ $endchar";
+if [ $? -ne 0 ]; then
+	PS1="${PS_RED}\$?${PS_NORMAL}_[${PS_PURPLE}\t${PS_NORMAL}]${beginning} ${PS_CYAN}$path${PS_NORMAL}]\n[_ $endchar";
+fi
+unset beginning return_val path endchar
+
+#if [ $UID -eq 0 ]; then
+    #PS1='[\t][\u@\h: $PS_CYAN\W${PS_NORMAL}]${PS_RED}#$PS_NORMAL} ';
+    #PS1='[\t][\u@\h: \e[0;36m\W\e[0m]\e[0;31m#\e[0m ';
+#else
+        #PS1=`echo -e '[\t][\u@\h: ${PS_CYAN}\W${PS_NORMAL}]${PS_GREEN}$${PS_NORMAL} '`;
+    # for displaying more path if it descends from Dropbox
+    #PS1='[\t][\u@\h: \e[0;36m\W\e[0m]\e[0;32m$\e[0m ';
+    #PS1='--[\t][\u@\h: \e[0;36m\W\e[0m]\e[0;32m$\e[0m ';
+#fi

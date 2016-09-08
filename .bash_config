@@ -1,0 +1,21 @@
+#!/bin/bash
+
+
+### shell ###
+[ "$TERM" = dumb ] && export TERM=xterm
+
+
+
+### bash config ###
+alias sba=". ${HOME}/.bash_config";
+# alias viba='vim /home/zamalchi/.bash_config';
+# alias eba='emacs -nw /home/zamalchi/.bash_config';
+
+
+
+
+
+# source all the files in bash-config/partials/
+for f in ${HOME}/bash-config/partials/*; do
+  . "$f";
+done

@@ -1,0 +1,67 @@
+#!/bin/bash
+
+
+### note ###
+function note() {
+  local OPTIND p d m;
+  while getopts "pdm:" opt; do
+    case $opt in
+      m)
+	echo
+	date | tee -a /tmp/noteLog
+	echo "${OPTARG}" | tee -a /tmp/noteLog
+	echo | tee -a /tmp/noteLog
+	;;
+      d)
+	rm -f /tmp/noteLog
+	echo "/tmp/noteLog deleted."
+	;;
+      *)
+	echo "invalid option. Exiting."
+	;;
+    esac
+  done
+
+  # no args: print note
+  if [ ${#@} -eq 0 ]; then
+    echo "*** *** ***"
+    cat /tmp/noteLog
+    echo "*** *** ***"
+  fi
+}
+export note;
+
+
+function second-func() {
+  n=0;
+  s=0;
+  c=0; # alternating color
+  if [ $# -eq 0 ]; then
+    let n=3600;
+  else
+    let n=${1}*60;
+  fi
+
+  while [ $n -gt 0 ]; do
+    #if [ `expr $n % 20` -eq 0 ]; then
+    #  clear;
+    #fi
+    let s=$((10#`date +"%S"` + 0));
+    if [ ${s} -eq 0 ]; then
+        echo -e `date +"%a ${CYAN}%d${NORMAL} %b: ${YELLOW}%H:%M:%S${NORMAL}"`;
+    else
+        if [ ${c} -eq 0 ]; then
+            echo -e `date +"%a ${CYAN}%d${NORMAL} %b: ${LPURPLE}%H:%M:%S${NORMAL}"`;
+            let c=1;
+        else
+            echo -e `date +"%a ${CYAN}%d${NORMAL} %b: ${PURPLE}%H:%M:%S${NORMAL}"`;
+            let c=0;
+        fi
+    fi
+    sleep 1;
+    let n-=1;
+  done
+}
+
+alias minute='minute-func';
+alias second='second-func';

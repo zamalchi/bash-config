@@ -1,0 +1,39 @@
+#!/bin/bash
+
+
+
+function pingg-func() {
+  ping -c1 www.google.com;
+  if [ $? -eq 0 ]; then
+    echo -e "${GREEN}---------- SUCCESS ----------${NORMAL}";
+  else
+    echo -e "${RED}---------- FAILURE ----------${NORMAL}";
+  fi
+}
+alias pingg="pingg-func"
+
+
+alias h='history';
+alias ht='history | tail -20';
+alias j='jobs -l';
+
+### misc ###
+alias img='xdg-open ${1}';
+alias open='gnome-open ${1}';
+alias bc='bc -l';
+
+# Use netstat command to quickly list all TCP/UDP port on the server
+alias ports='netstat -tulanp';
+# get web server headers #
+alias header='curl -I'
+# find out if remote server supports gzip / mod_deflate or not #
+alias headerc='curl -I --compress'
+## set some other defaults ##
+alias df='df -H'
+alias du='du -ch'
+ 
+# top is atop, just like vi is vim
+rpm -q atop > /dev/null;
+if [ $? -eq 0 ]; then
+	alias top='atop'
+fi
