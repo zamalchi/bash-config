@@ -1,0 +1,39 @@
+#!/bin/bash
+
+##################################
+
+packages=("atop" "colordiff")
+aliases=("top" "diff")
+
+# set to 1 if any packages were recommended
+any=0
+
+echo -e "############################################"
+
+for p in "${!packages[@]}"; do
+
+	if [ "$OS" == "Ubuntu" ]; then
+		num=`dpkg -l ${packages[${p}]} 2>/dev/null | egrep '^ii' | wc -l`;
+	else
+		# fix so it outputs not 0 if installed
+		num=`rpm -q ${packages[${p}]} > /dev/null`;
+	fi
+	if [ "$num" -eq "0" ]; then
+		echo "Recommended install: ${packages[${p}]}";
+		#TODO fix any not working
+		any=1
+	else
+		#TODO fix this not working
+		alias ${aliases[${p}]}='${packages[${p}]}';
+		echo "set alias: ${aliases[${p}]} --> ${packages[${p}]}"
+	fi
+
+done
+
+if [ "$any" -eq 0 ]; then
+	echo "No recommended packages"
+fi
+
+echo -e "############################################\n"
+
+##################################

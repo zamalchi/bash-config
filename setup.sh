@@ -24,9 +24,6 @@ while getopts ":rc:" opt; do
 	esac
 done
 
-
-
-
 ############################################
 
 RED=`echo "\033[31m"`
@@ -73,30 +70,6 @@ for f in "${files[@]}"; do
 	fi
 
 done
-
-# # .bash_config
-# if [ -e ${HOME}/.bash_config ] && [ ! -e ${HOME}/.bash_config.off ]; then
-#     mv ${HOME}/.bash_config{,.off};
-#     echo "moved: ~/.bash_config --> ~/.bash_config.off"
-# fi
-# cp ${PARENT_DIR}/.bash_config ${HOME}/.bash_config;
-# echo "copied: bash-config/.bash_control --> ~/.bash_control"
-
-# # .bash_local
-# if [ -e ${HOME}/.bash_local ] && [ ! -e ${HOME}/.bash_local.off ]; then
-#     mv ${HOME}/.bash_local{,.off};
-#     echo "moved: ~/.bash_local --> ~/.bash_local.off"
-# fi
-# cp ${PARENT_DIR}/.bash_local ${HOME}/.bash_local;
-# echo "copied: bash-config/.bash_local --> ~/.bash_local"
-
-# # .bashrc
-# if [ -e ${HOME}/.bashrc ] && [ ! -e ${HOME}/.bashrc.off ]; then
-#     mv ${HOME}/.bashrc{,.off};
-#     echo "moved: ~/.bashrc --> ~/.bashrc.off"
-# fi
-# cp ${PARENT_DIR}/.bashrc ${HOME}/.bashrc;
-# echo "copied: bash-config/.bashrc --> ~/.bashrc"
 
 echo -e "############################################\n"
 
