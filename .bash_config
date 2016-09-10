@@ -10,15 +10,33 @@
 # alias viba='vim /home/zamalchi/.bash_config';
 # alias eba='emacs -nw /home/zamalchi/.bash_config';
 
+if [ -f /etc/lsb-release ]; then
+    . /etc/lsb-release
+    OS=$DISTRIB_ID
+    VER=$DISTRIB_RELEASE
 
+elif [ -f /etc/debian_version ]; then
+    OS=Debian
+    VER=$(cat /etc/debian_version)
 
+elif [ -f /etc/redhat-release ]; then
+    OS=RedHat
+
+else
+    OS=$(uname -s)
+    VER=$(uname -r)
+
+fi
+
+############################################
 
 
 # source all the files in bash-config/partials/
-for f in ${HOME}/bash-config/partials/*; do
-  . "$f";
-done
-
+if [ -d ${HOME}/bash-config/partials ]; then
+	for f in ${HOME}/bash-config/partials/*; do
+  		. "$f";
+	done
+fi
 
 PATH=$PATH:$HOME/bin
 

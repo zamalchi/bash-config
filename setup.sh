@@ -2,6 +2,34 @@
 
 parent_path=$( cd "$(dirname "${BASH_SOURCE}")" ; pwd -P )
 
+############################################
+
+while getopts ":rc:" opt; do
+	case $opt in
+		r)
+			echo "-r : install to root (work in progess)"
+			;;
+		c)
+			echo "-c : install to directory : ${OPTARG}" >&2
+			;;
+		\?)
+			echo "Invalid option: -${OPTARG}" >&2
+			exit 1
+			;;
+		:)
+			echo "Option -${OPTARG} requires an argument" >&2
+			exit 1
+			;;
+	esac
+done
+
+
+
+
+############################################
+
+echo -e "\n############################################"
+
 # .bash_config
 if [ -e ${HOME}/.bash_config ] && [ ! -e ${HOME}/.bash_config.off ]; then
     mv ${HOME}/.bash_config{,.off};
@@ -25,6 +53,8 @@ if [ -e ${HOME}/.bashrc ] && [ ! -e ${HOME}/.bashrc.off ]; then
 fi
 cp ${parent_path}/.bashrc ${HOME}/.bashrc;
 echo "copied: bash-config/.bashrc --> ~/.bashrc"
+
+echo -e "############################################\n"
 
 
 . ${HOME}/.bashrc;
