@@ -30,10 +30,13 @@
 
 ############################################
 
+PARENT_DIR=$( cd "$(dirname "${BASH_SOURCE}")" ; \pwd -P )
+
 
 # source all the files in bash-config/partials/
-if [ -d ${HOME}/bash-config/partials ]; then
-	for f in ${HOME}/bash-config/partials/*; do
+if [ -d ${PARENT_DIR}/partials ]; then
+	for f in ${PARENT_DIR}/partials/*; do
+  		echo "sourcing : ${f}"
   		. "$f";
 	done
 fi

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PARENT_DIR=$( cd "$(dirname "${BASH_SOURCE}")" ; pwd -P )
+PARENT_DIR=$( cd "$(dirname "${BASH_SOURCE}")" ; \pwd -P )
 
 INSTALL_DIR=$PARENT_DIR
 
@@ -28,14 +28,9 @@ done
 
 ############################################
 
-RED=`echo "\033[31m"`
-LRED=`echo "\033[1;31m"`
-GREEN=`echo "\033[32m"`
-LGREEN=`echo "\033[1;32m"`
-CYAN=`echo "\033[36m"`
-LCYAN=`echo "\033[1;36m"`
-NORMAL=`echo "\033[m"`
-
+if [ -e ${INSTALL_DIR}/partials/colors ]; then
+	. ${INSTALL_DIR}/partials/colors
+fi
 
 
 # DATE="`date +%Y%m%d-%H%M%S`"
@@ -112,4 +107,4 @@ echo -e "############################################\n"
 
 
 
-source ${INSTALL_DIR}/.bashrc;
+#source ${HOME}/.bashrc;
