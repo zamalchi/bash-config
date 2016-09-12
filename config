@@ -36,7 +36,12 @@ PARENT_DIR=$( cd "$(dirname "${BASH_SOURCE}")" ; \pwd -P )
 # source all the files in bash-config/partials/
 if [ -d ${PARENT_DIR}/partials ]; then
 	for f in ${PARENT_DIR}/partials/*; do
-  		echo "sourcing : ${f}"
+			# alias path
+			# if [ $? -eq 0 ]; then
+  			# echo "sourcing : `path ${f}`"
+  		# else
+			echo "sourcing : ${f}"
+  		# fi
   		. "$f";
 	done
 fi

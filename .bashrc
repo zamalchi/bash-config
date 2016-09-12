@@ -1,6 +1,6 @@
 # .bashrc
 
-echo "### BASHRC START ###"
+echo "### BASHRC START ################################"
 
 PARENT_DIR=$( cd "$(dirname "${BASH_SOURCE}")" ; pwd -P )
 
@@ -31,5 +31,4 @@ if [ -f ${INSTALL_DIR}/local ]; then
 	. ${INSTALL_DIR}/local
 fi
 
-echo "#### BASHRC END ####"
-
+echo "#### BASHRC END #################################"

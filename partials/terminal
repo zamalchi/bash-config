@@ -53,6 +53,21 @@ function pwd-color-func() {
 }
 alias pwd="pwd-color-func";
 
+# TODO : needs work to make it work from any partial path
+function path() {
+	full=`readlink -e ${1}`;
+	if [ $? -eq 0 ]; then
+		path=`echo $full | grep -o '.*/'`;
+  	echo -ne "${GREEN}${path}${NORMAL}";
+  	echo -e "${LBLUE}${1}${NORMAL}";
+  	return 0
+  else
+  	echo -e "${RED}File does not exist${NORMAL}"
+  	return 1
+  fi
+}
+
+
 
 ##################################
 
