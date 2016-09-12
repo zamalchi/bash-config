@@ -1,0 +1,5 @@
+
+- move .bash_config to bash-config/config
+- change calls for .bash_local to be bash-config/local
+- add a folder distro/ with all the OS relevant aliases etc so only one check is needed
+- sed the install_path or something into a variable in .bashrc through setup.sh 

@@ -10,23 +10,23 @@
 # alias viba='vim /home/zamalchi/.bash_config';
 # alias eba='emacs -nw /home/zamalchi/.bash_config';
 
-if [ -f /etc/lsb-release ]; then
-    . /etc/lsb-release
-    OS=$DISTRIB_ID
-    VER=$DISTRIB_RELEASE
+# if [ -f /etc/lsb-release ]; then
+#     . /etc/lsb-release
+#     OS=$DISTRIB_ID
+#     VER=$DISTRIB_RELEASE
 
-elif [ -f /etc/debian_version ]; then
-    OS=Debian
-    VER=$(cat /etc/debian_version)
+# elif [ -f /etc/debian_version ]; then
+#     OS=Debian
+#     VER=$(cat /etc/debian_version)
 
-elif [ -f /etc/redhat-release ]; then
-    OS=RedHat
+# elif [ -f /etc/redhat-release ]; then
+#     OS=RedHat
 
-else
-    OS=$(uname -s)
-    VER=$(uname -r)
+# else
+#     OS=$(uname -s)
+#     VER=$(uname -r)
 
-fi
+# fi
 
 ############################################
 
