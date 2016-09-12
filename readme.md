@@ -1,12 +1,9 @@
 # bash-config
 ###Config files for setting custom bash environment
 - run `setup.sh`:
-    - if exists: moves `~/.bash_config` --> `~/.bash_config.off`
-    - if exists: moves `~/.bash_local` --> `~/.bash_local.off`
+		- `-c <install_dir>` (location of bash-config/ directory) : default 
     - if exists: moves `~/.bashrc` --> `~/.bashrc.off`
-    - copies `./.bash_config` --> `~/.bash_config`
-    - copies `./.bash_local` --> `~/.bash_local`
     - copies `./.bashrc` --> `~/.bashrc`
-    - runs `~/.bashrc` which sources:
-        - `~/.bash_config` (which sources all the files in `./partials`)
-        - `~/.bash_local` (if it exists)
+- `source ~/.bashrc` which, in turn, sources: 
+    - `./config` (which sources all the files in `./partials/`)
+    - `./local` (if it exists)
