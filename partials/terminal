@@ -12,8 +12,8 @@ alias .b='cd -';
 alias ls='ls --color=auto';
 alias l.='ls -d .*';
 alias la='ls -lA';
-alias l1='ls -1';
-alias ll='ls -alF'
+alias l1='ls -1F';
+alias ll='ls -AlF'
 alias l='ls -CF'
 
 alias pwla='echo;pwd;la;echo';
