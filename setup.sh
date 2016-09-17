@@ -55,7 +55,7 @@ if [ ! -e ${HOME}/.bashrc.off ]; then
 
 # if .bashrc.off exists, just overwrite .bashrc
 # (the assumption is that this isn't the initial setup and that .bashrc.off is the original)
-elif [ -e ${HOME}/.bashrc ]; then
+elif [ -e ${HOME}/.bashrc.off ]; then
 	cp ${INSTALL_DIR}/.bashrc ${HOME}/.bashrc
 	echo -e "${CYAN}updated : ${INSTALL_DIR}/.bashrc --> ${HOME}/.bashrc${NORMAL}"
 
