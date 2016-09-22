@@ -36,32 +36,32 @@ fi
 # DATE="`date +%Y%m%d-%H%M%S`"
 
 # files=(".bashrc" ".bash_config" ".bash_local")
+files=(".bashrc" ".inputrc")
 
 echo -e "\n############################################"
 
-# if .bashrc.off doesn't exists (initial setup), mv .bashrc to .bashrc.off (if it exists)
-if [ ! -e ${HOME}/.bashrc.off ]; then
+for f in ${files[@]}; do
+	# if file.off doesn't exists (initial setup), mv file to file.off (if it exists)
+	if [ ! -e ${HOME}/${f}.off ]; then
+	
+		# if the file exists, rename it (safe, bc no file is overwritten)
+		if [ -e ${HOME}/${f} ]; then
+			mv ${HOME}/${f} ${HOME}/${f}.off
+			echo -e "${GREEN}moved\t: ${HOME}/${f} --> ${HOME}/${f}.off${NORMAL}"
+			cp ${INSTALL_DIR}/${f} ${HOME}/${f}
+			echo -e "${GREEN}copied\t: ${INSTALL_DIR}/${f} --> ${HOME}/${f}${NORMAL}"
+		fi
 
-	# if the old and new .bashrc files both exist, rename the old and copy the new
-	if [ -e ${HOME}/.bashrc ] && [ -e ${HOME}/.bashrc ]; then
-		mv ${HOME}/.bashrc ${HOME}/.bashrc.off
-		echo -e "${GREEN}moved : ${HOME}/.bashrc --> ${HOME}/.bashrc.off${NORMAL}"
-		cp ${INSTALL_DIR}/.bashrc ${HOME}/.bashrc
-		echo -e "${GREEN}copied : ${INSTALL_DIR}/.bashrc --> ${HOME}/.bashrc${NORMAL}"
-
-		# set the INSTALL_DIR variable in the deployed .bashrc
-		sed -i "/^INSTALL_DIR/c INSTALL_DIR=${INSTALL_DIR}" ${HOME}/.bashrc
+	# if file.off exists, just overwrite file
+	# (the assumption is that this isn't the initial setup and that file.off is the original)
+	elif [ -e ${HOME}/${f} ]; then
+		cp ${INSTALL_DIR}/${f} ${HOME}/${f}
+		echo -e "${CYAN}updated\t: ${INSTALL_DIR}/${f} --> ${HOME}/${f}${NORMAL}"
 	fi
+done
 
-# if .bashrc.off exists, just overwrite .bashrc
-# (the assumption is that this isn't the initial setup and that .bashrc.off is the original)
-elif [ -e ${HOME}/.bashrc ]; then
-	cp ${INSTALL_DIR}/.bashrc ${HOME}/.bashrc
-	echo -e "${CYAN}updated : ${INSTALL_DIR}/.bashrc --> ${HOME}/.bashrc${NORMAL}"
-
-	# set the INSTALL_DIR variable in the deployed .bashrc
-	sed -i "/^INSTALL_DIR/c INSTALL_DIR=${INSTALL_DIR}" ${HOME}/.bashrc
-fi
+# set the INSTALL_DIR variable in the deployed .bashrc
+sed -i "/^INSTALL_DIR/c INSTALL_DIR=${INSTALL_DIR}" ${HOME}/.bashrc
 
 echo -e "############################################\n"
 
