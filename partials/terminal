@@ -39,6 +39,10 @@ alias c='clear';
 alias mkdir='mkdir -pv';
 
 alias sbb='"$BASH" -cl "sudo $(history -p !!)"';
+alias please=sbb;
+alias pls=sbb;
+alias plz=sbb;
+alias pl0x=sbb;
 
 # runs a command ${1} with the previous command's arguments
 function abb-func() { $BASH -cl "${1} $(history -p !!:*)"; }
