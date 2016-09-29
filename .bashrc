@@ -19,11 +19,6 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-if [ -f ${HOME}/.inputrc ]; then
-	echo "sourcing : ${HOME}/.inputrc"
-	. ${HOME}/.inputrc
-fi
-
 #if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
 #	. /usr/local/bin/virtualenvwrapper.sh
 #fi
