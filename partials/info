@@ -2,15 +2,19 @@
 
 
 
-function pingg-func() {
-  ping -c1 www.google.com;
+function pingg() {
+  if [ -z "$1" ]; then
+    ping -c1 www.google.com;
+  else
+    ping -c1 ${1};
+  fi
+
   if [ $? -eq 0 ]; then
     echo -e "${GREEN}---------- SUCCESS ----------${NORMAL}";
   else
     echo -e "${RED}---------- FAILURE ----------${NORMAL}";
   fi
 }
-alias pingg="pingg-func"
 
 
 alias h='history';
