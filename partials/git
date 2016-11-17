@@ -14,12 +14,27 @@ alias gitcom='git checkout master';
 alias uncommit='git reset --soft HEAD^';
 alias unstage='git reset HEAD';
 alias gitset='git remote set-url origin';
-function giturl-func() {
+function giturl() {
 	url=`git config --get remote.origin.url`;
 	header=`echo $url | awk -F '/' '{print $1}'`;
 	repo=`echo $url | awk -F '/' '{print $2}'`;
 
 	echo -e "${GREEN}${header}${NORMAL}/${LCYAN}${repo}${NORMAL}";
 }
-alias giturl='giturl-func';
 alias gitinfo='git remote show origin';
+####
+alias gpush='git push';
+alias gipush='gpush';
+alias gitpush='gpush';
+####
+alias gpusha='git push --all';
+alias gipusha='gpusha';
+alias gitpusha='gpusha';
+#### 
+alias gpull='git pull';
+alias gipull='gpull';
+alias gitpull='gpull';
+####
+alias gitcont='git add .; git commit -m "..."; git push';
+####
+alias gitcod='git checkout develop';
